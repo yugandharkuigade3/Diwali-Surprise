@@ -1,0 +1,278 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    /* Separate login background */
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(218, 153, 53, 0.16),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(218, 153, 53, 0.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #050b19,
+            #101d38,
+            #080f20
+        );
+
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Decorative golden lights */
+
+body::before,
+body::after {
+    content: "✦";
+    position: fixed;
+    color: rgba(255, 204, 105, 0.55);
+    font-size: 35px;
+    animation: sparkle 3s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+body::before {
+    top: 12%;
+    left: 12%;
+}
+
+body::after {
+    right: 12%;
+    bottom: 12%;
+    animation-delay: 1.5s;
+}
+
+/* Login container */
+
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Login card */
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    padding: 40px 35px;
+
+    text-align: center;
+
+    background: rgba(12, 23, 46, 0.92);
+
+    border: 1px solid rgba(255, 215, 130, 0.45);
+    border-radius: 25px;
+
+    box-shadow:
+        0 0 30px rgba(255, 190, 80, 0.12),
+        0 20px 60px rgba(0, 0, 0, 0.45);
+
+    animation: cardReveal 1s ease both;
+}
+
+/* Diya */
+
+.diya-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 12px #ffc75e);
+}
+
+.welcome-text {
+    color: #f6cf83;
+    font-size: 13px;
+    letter-spacing: 1.2px;
+    margin-bottom: 8px;
+}
+
+.login-card h1 {
+    color: #ffe1a0;
+    font-size: 27px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    color: #e7dfd1;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* Input fields */
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #ffe1a0;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+
+    border: 1px solid rgba(255, 215, 130, 0.35);
+    border-radius: 12px;
+
+    outline: none;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+    font-size: 14px;
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.input-group input:focus {
+    border-color: #f5c76b;
+    box-shadow: 0 0 0 3px rgba(245, 199, 107, 0.12);
+}
+
+/* Login button */
+
+#loginButton {
+    width: 100%;
+    padding: 15px;
+
+    border: none;
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #f5c76b,
+        #d99a35
+    );
+
+    color: #251608;
+    font-size: 15px;
+    font-weight: 600;
+
+    box-shadow: 0 0 15px rgba(255, 190, 80, 0.35);
+
+    transition: 0.3s ease;
+}
+
+#loginButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255, 190, 80, 0.6);
+}
+
+#loginButton:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+/* Error message */
+
+.error-message {
+    min-height: 22px;
+    margin-bottom: 10px;
+    color: #ff9c9c;
+    font-size: 12px;
+}
+
+/* Bottom text */
+
+.bottom-text {
+    margin-top: 25px;
+    color: #f5d99f;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
+
+/* Animations */
+
+@keyframes cardReveal {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes sparkle {
+    from {
+        opacity: 0.3;
+        transform: scale(0.8) rotate(0deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2) rotate(35deg);
+    }
+}
+
+/* Mobile */
+
+@media screen and (max-width: 600px) {
+    .login-card {
+        padding: 32px 23px;
+        border-radius: 21px;
+    }
+
+    .login-card h1 {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    .diya-icon {
+        font-size: 42px;
+    }
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}

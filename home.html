@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Diwali Surprise ❤️</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- HOMEPAGE -->
+    <section class="scene active" id="homeScene">
+
+        <!-- RESPONSIVE BACKGROUND IMAGE -->
+        <div class="scene-art">
+
+            <picture>
+                <source
+                    media="(max-width: 600px)"
+                    srcset="./Assets/Diwali_mobile.png"
+                >
+
+                <img
+                    src="./Assets/Diwali_pc.png"
+                    alt="A couple celebrating Diwali together"
+                >
+            </picture>
+
+        </div>
+
+        <!-- TOP HEADING -->
+        <div class="scene-heading">
+            <p class="eyebrow">
+                ✨ A little celebration made with love ✨
+            </p>
+        </div>
+
+        <!-- MESSAGE BUTTON -->
+        <div class="scene-controls">
+            <button type="button" id="messageButton">
+                ❤️ A Little Diwali Message ✨
+            </button>
+        </div>
+
+    </section>
+
+
+    <!-- MESSAGE POPUP -->
+    <div
+        class="message-overlay"
+        id="messageOverlay"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="messageTitle"
+        aria-hidden="true"
+    >
+
+        <div class="message-card">
+
+            <button
+                type="button"
+                id="closeMessage"
+                aria-label="Close message"
+            >
+                &times;
+            </button>
+
+            <h2 id="messageTitle">
+                🪔 Happy Diwali ❤️
+            </h2>
+
+            <p>
+                Diwali is a festival of lights, joy, trust,
+                happiness, and togetherness.
+            </p>
+
+            <p>
+                It reminds us that even the smallest light
+                can remove darkness and bring hope into
+                our lives.
+            </p>
+
+            <p>
+                It's a celebration of new beginnings,
+                beautiful moments, and the people who
+                make our lives brighter.
+            </p>
+
+            <p>
+                And just like these beautiful lights,
+                you are the one who brings sparkle into
+                my life and makes everything a little brighter.
+            </p>
+
+            <p>
+                Let's promise to keep loving each other
+                the way we do, to stand beside each other
+                through every darkness, and to always be
+                a light in each other's lives.
+            </p>
+
+            <p>
+                May we keep creating beautiful memories
+                together, today and always.
+            </p>
+
+            <p class="final-message">
+                Happy Diwali, My Favourite Person! ❤️
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- Background music -->
+    <audio id="backgroundMusic" preload="auto" loop>
+        <source src="https://res.cloudinary.com/unsxzvho/video/upload/v1794033387/jalte-diye-full-video-song-prem-ratan-dhan-payo-salman-khan-sonam-kapoor-t-seri_Db4FZwg5.mp3" type="audio/mpeg">
+        Your browser does not support audio playback.
+    </audio>
+
+    <!-- Floating music player -->
+    <div class="music-player" id="musicPlayer">
+        <button type="button" id="musicToggle" aria-label="Play background music" aria-pressed="false">
+            <span id="musicIcon" aria-hidden="true">▶</span>
+        </button>
+        <div class="music-info">
+            <span class="music-title">Jalte Diye</span>
+            <span class="music-status" id="musicStatus" aria-live="polite">Diwali melodies</span>
+        </div>
+        <span class="music-note" aria-hidden="true">♫</span>
+    </div>
+
+</body>
+</html>

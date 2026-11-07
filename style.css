@@ -1,0 +1,663 @@
+/* ==========================
+   GLOBAL STYLES
+========================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+    background: #080f20;
+    color: white;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* ==========================
+   HOMEPAGE
+========================== */
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: #080f20;
+}
+
+/* ==========================
+   RESPONSIVE BACKGROUND
+========================== */
+
+.scene-art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.scene-art picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.scene-art img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    animation: imageReveal 1.8s ease both;
+}
+
+.scene-art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+
+    background: linear-gradient(
+        to bottom,
+        rgba(4, 10, 25, 0.30) 0%,
+        rgba(4, 10, 25, 0.02) 35%,
+        rgba(4, 10, 25, 0.05) 65%,
+        rgba(4, 10, 25, 0.40) 100%
+    );
+}
+
+/* ==========================
+   TOP HEADING
+========================== */
+
+.scene-heading {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    z-index: 3;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 92%;
+    text-align: center;
+    animation: fadeDown 1.4s ease both;
+}
+
+.scene-heading .eyebrow {
+    display: inline-block;
+    padding: 12px 22px;
+    border: 1px solid rgba(255, 215, 130, 0.45);
+    border-radius: 50px;
+    background: rgba(8, 15, 32, 0.55);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    color: #ffe6a6;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+
+    box-shadow: 0 0 25px rgba(255, 190, 80, 0.12);
+}
+
+/* ==========================
+   MESSAGE BUTTON
+========================== */
+
+.scene-controls {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    z-index: 4;
+
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: 92%;
+    text-align: center;
+    animation: fadeUp 1.6s ease both;
+}
+
+#messageButton {
+    padding: 15px 30px;
+    border: 1px solid rgba(255, 220, 150, 0.8);
+    border-radius: 50px;
+
+    background: linear-gradient(
+        135deg,
+        #f5c76b,
+        #d99a35
+    );
+
+    color: #251608;
+    font-size: 16px;
+    font-weight: 600;
+
+    box-shadow:
+        0 0 15px rgba(255, 190, 80, 0.45),
+        0 0 35px rgba(255, 190, 80, 0.20);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#messageButton:hover {
+    transform: translateY(-3px) scale(1.03);
+
+    box-shadow:
+        0 0 22px rgba(255, 190, 80, 0.7),
+        0 0 45px rgba(255, 190, 80, 0.3);
+}
+
+#messageButton:active {
+    transform: scale(0.97);
+}
+
+/* ==========================
+   MESSAGE OVERLAY
+========================== */
+
+.message-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    background: rgba(2, 7, 18, 0.78);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+.message-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* ==========================
+   MESSAGE CARD
+========================== */
+
+.message-card {
+    position: relative;
+    width: 100%;
+    max-width: 550px;
+
+    max-height: 85vh;
+    max-height: 85dvh;
+
+    padding: 35px 32px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+
+    border: 1px solid rgba(255, 215, 130, 0.4);
+    border-radius: 22px;
+
+    background: linear-gradient(
+        145deg,
+        rgba(23, 34, 59, 0.98),
+        rgba(8, 15, 32, 0.98)
+    );
+
+    box-shadow:
+        0 0 30px rgba(255, 190, 80, 0.12),
+        0 20px 70px rgba(0, 0, 0, 0.5);
+
+    transform: translateY(25px) scale(0.96);
+    transition: transform 0.4s ease;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.message-card::-webkit-scrollbar {
+    display: none;
+    width: 0;
+}
+
+.message-overlay.show .message-card {
+    transform: translateY(0) scale(1);
+}
+
+/* ==========================
+   MESSAGE TEXT
+========================== */
+
+.message-card h2 {
+    margin-bottom: 22px;
+    color: #ffdc96;
+    text-align: center;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.message-card p {
+    margin-bottom: 17px;
+    color: #f1e8d8;
+    font-size: 15px;
+    line-height: 1.85;
+    text-align: center;
+}
+
+.message-card .final-message {
+    margin-top: 25px;
+    color: #ffda8a;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* ==========================
+   CLOSE BUTTON
+========================== */
+
+#closeMessage {
+    position: sticky;
+    top: 0;
+    float: right;
+
+    width: 35px;
+    height: 35px;
+    margin: -18px -15px 0 0;
+
+    border: 1px solid rgba(255, 215, 130, 0.35);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffe2a0;
+
+    font-size: 22px;
+    line-height: 1;
+    transition: background 0.3s ease;
+}
+
+#closeMessage:hover {
+    background: rgba(255, 190, 80, 0.2);
+}
+
+/* ==========================
+   ANIMATIONS
+========================== */
+
+@keyframes imageReveal {
+    from {
+        opacity: 0;
+        transform: scale(1.04);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}
+
+/* ==========================
+   TABLET
+========================== */
+
+@media screen and (max-width: 900px) {
+
+    .scene-heading {
+        top: 6%;
+    }
+
+    .scene-heading .eyebrow {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+
+    .scene-controls {
+        bottom: 7%;
+    }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media screen and (max-width: 600px) {
+
+    .scene-art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .scene-art::after {
+        background: linear-gradient(
+            to bottom,
+            rgba(4, 10, 25, 0.35),
+            transparent 25%,
+            transparent 70%,
+            rgba(4, 10, 25, 0.35)
+        );
+    }
+
+    .scene-heading {
+        top: 5%;
+        width: 94%;
+    }
+
+    .scene-heading .eyebrow {
+        padding: 10px 15px;
+        font-size: 12px;
+        letter-spacing: 0.4px;
+        line-height: 1.6;
+    }
+
+    /* Message button positioned above music player */
+    .scene-controls {
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 92%;
+        max-width: 92%;
+        text-align: center;
+    }
+
+    #messageButton {
+        max-width: 100%;
+        padding: 13px 22px;
+        font-size: 14px;
+    }
+
+    .message-overlay {
+        padding: 16px;
+    }
+
+    .message-card {
+        max-width: 100%;
+        max-height: 85dvh;
+        padding: 28px 22px;
+        border-radius: 18px;
+    }
+
+    .message-card h2 {
+        font-size: 23px;
+    }
+
+    .message-card p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+
+    .message-card .final-message {
+        font-size: 16px;
+    }
+}
+
+/* ==========================
+   SMALL PHONES
+========================== */
+
+@media screen and (max-width: 360px) {
+
+    .scene-heading .eyebrow {
+        font-size: 11px;
+        padding: 9px 12px;
+    }
+
+    #messageButton {
+        padding: 12px 18px;
+        font-size: 13px;
+    }
+
+    .message-card {
+        padding: 25px 17px;
+    }
+
+    .message-card h2 {
+        font-size: 21px;
+    }
+
+    .message-card p {
+        font-size: 13px;
+    }
+}
+
+/* ==========================
+   LANDSCAPE PHONES
+========================== */
+
+@media screen and (max-height: 500px)
+       and (orientation: landscape) {
+
+    .scene-heading {
+        top: 3%;
+    }
+
+    .scene-controls {
+        bottom: 4%;
+    }
+
+    .message-card {
+        max-height: 88dvh;
+        padding: 20px 25px;
+    }
+
+    .message-card h2 {
+        margin-bottom: 12px;
+        font-size: 21px;
+    }
+
+    .message-card p {
+        margin-bottom: 10px;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+}
+
+/* ==========================
+   ACCESSIBILITY
+========================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ==========================
+   BACKGROUND MUSIC PLAYER
+========================== */
+
+.music-player {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 9;
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 9px 15px 9px 9px;
+
+    border: 1px solid rgba(255, 215, 130, 0.55);
+    border-radius: 50px;
+
+    background: rgba(12, 19, 37, 0.88);
+    color: #ffe6ad;
+
+    box-shadow: 0 5px 24px rgba(0, 0, 0, 0.32);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.music-player:hover {
+    border-color: rgba(255, 220, 150, 0.9);
+    box-shadow: 0 0 20px rgba(255, 200, 100, 0.2);
+}
+
+#musicToggle {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #f5d17f,
+        #d99a35
+    );
+
+    color: #251608;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#musicToggle:hover {
+    transform: scale(1.07);
+}
+
+#musicToggle:focus-visible {
+    outline: 2px solid #fff0c5;
+    outline-offset: 3px;
+}
+
+.music-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.music-title {
+    color: #ffe6ad;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.music-status {
+    color: #d8c6a4;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.music-note {
+    margin-left: 1px;
+    color: #f5ce7b;
+    font-size: 19px;
+}
+
+/* ==========================
+   MOBILE MUSIC PLAYER
+========================== */
+
+@media screen and (max-width: 600px) {
+
+    .music-player {
+        position: fixed;
+        left: 50%;
+        right: auto;
+        bottom: 20px;
+        top: auto;
+
+        transform: translateX(-50%);
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 11px 7px 7px;
+
+        z-index: 9;
+    }
+
+    #musicToggle {
+        flex-basis: 35px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .music-title {
+        font-size: 11px;
+    }
+
+    .music-status {
+        font-size: 9px;
+    }
+
+    .music-note {
+        font-size: 17px;
+    }
+}
+
+/* Keep popup above the music player */
+
+.message-overlay {
+    z-index: 10;
+}
+
+.music-player {
+    z-index: 9;
+}
